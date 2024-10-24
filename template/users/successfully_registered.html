@@ -4,9 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #3498db; /* Blue color */
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .link-container {
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db; /* Blue color */
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid #3498db; /* Border for visibility */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+
+        a:hover {
+            color: #ffffff; /* Change text color on hover */
+            background-color: #3498db; /* Background color on hover */
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h2>User Registered!</h2>
-    <p> Your user details have been Successfully Registered!</p>
+    <div class="container">
+        <h2>Doctor's Profile Registered!</h2>
+        <p>Your details have been successfully registered!</p>
+        <p>CLICK BELOW TO LOGIN</p>
+        <div class="link-container">
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </div>
 </body>
 </html>
