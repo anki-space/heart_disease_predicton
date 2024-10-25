@@ -7,7 +7,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-image: url(' https://st.depositphotos.com/1598598/4443/i/450/depositphotos_44437539-stock-photo-abstract-medical-background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: 100% 100%;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -60,8 +63,7 @@
         <h2>Welcome!</h2>
         <p>You have successfully logged in.</p>
         <div class="link-container">
-            <a href="{% url 'home' %}">Go to Home</a>
+            <a href="{% url 'signout_profile' %}">SIGNOUT</a>
         </div>
-    </div>
 </body>
 </html>

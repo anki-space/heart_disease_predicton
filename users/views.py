@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
@@ -49,3 +49,7 @@ def login_view(request):  #dont name "login" bcoz django already have build-in l
     else:
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
+
+def signout_profile(request):
+    logout(request)
+    return redirect ('home')
