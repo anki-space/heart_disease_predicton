@@ -1,0 +1,63 @@
+/* Body background with blue and white gradient */
+body {
+    background: linear-gradient(to bottom, #e6f7ff, #80d4ff); /* Blue and white gradient */
+    color: #000; /* Text color */
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Form container styling */
+.form-container {
+    margin: 5% auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95); /* White with slight transparency */
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Button styling */
+.btn-predict {
+    background-color: #007bff; /* Bright blue button */
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-predict:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0px 0px 15px #007bff; /* Glow effect */
+}
+
+/* Input field styling */
+input.form-control, select.form-control {
+    background-color: rgba(255, 255, 255, 0.9); /* Light input field */
+    color: #000;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Placeholder styling */
+input::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+/* Responsive design: adjust form width for smaller screens */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+    }
+}
+
+/* Optional: Add a floating image */
+.background-image {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 150px; /* Adjust size */
+    opacity: 0.2; /* Subtle appearance */
+    z-index: -1; /* Place behind content */
+}

@@ -1,0 +1,11 @@
+sgiref            3.8.1
+backports.zoneinfo 0.2.1
+Django             4.2.16
+et_xmlfile         2.0.0
+openpyxl           3.1.5
+pip                24.2
+setuptools         75.1.0
+sqlparse           0.5.1
+typing_extensions  4.12.2
+tzdata             2024.2
+wheel              0.44.0

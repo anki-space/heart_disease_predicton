@@ -8,4 +8,6 @@ urlpatterns = [
     path('successfully_registered/', views.successfully_registered, name='successfully_registered'),
     path('successfully_logged_in/', views.successfully_logged_in, name='successfully_logged_in'),
     path('signout_profile/', views.signout_profile, name='signout_profile'),
+    path('prediction_form/', views.prediction_form, name='prediction_form'),
+    path('result/', views.result, name='result'),
 ]
