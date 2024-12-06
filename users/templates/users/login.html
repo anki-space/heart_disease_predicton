@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,58 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-           body {
-            background-image: url(' https://th.bing.com/th/id/OIP.B29Fh6YxfP6rSpjW3Vjr-gHaEK?rs=1&pid=ImgDetMain');
+        body {
+            background-image: url("{% static 'login_2_new.png' %}");
             background-repeat: no-repeat;
-            background-attachment: fixed; 
-            background-size: 100% 100%;
+            background-attachment: fixed;
+            background-size: cover;
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            height: 100vh;
         }
 
         h2 {
-            color: #e1e7ec; /* Blue color */
+            color: #3498db;
+            text-align: center;
             margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
         }
+
         form {
-            background-color: #ffffff;
+            background-color: transparent;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
-            width: 600px;
-            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: left;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        label {
+            display: block;
+            font-size: 1em;
+            color:#3498db;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-bottom: 5px solid #ddd;
+            outline: none;
+            transition: border-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        input:focus, input:hover {
+            border-bottom: 5px solid #3498db;
         }
 
         button {
-            background-color: #3498db; /* Blue background */
-            color: white; /* White text */
+            background-color: #3498db;
+            color: white;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
+            display: block;
+            margin: auto;
             font-size: 1em;
             cursor: pointer;
-            
+            transition: background-color 0.3s, transform 0.2s ease;
         }
+
+        button:hover {
+            background-color: #1d6fa5;
+            transform: scale(1.05);
+        }
+
         p {
             font-size: 1em;
             color: #333;
             margin-top: 20px;
+            text-align: center;
         }
 
-       
+        p a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        p a:hover {
+            color: #1d6fa5;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
-    <h2>Login</h2>
     <form method="POST">
+        <h2>Login</h2>
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_p }}  
         <button type="submit">Login</button>
+        <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
     </form>
-    <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
 </body>
 </html>
+

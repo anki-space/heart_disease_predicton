@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,77 +6,259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor's RECORD</title>
     <style>
-       
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glowEffect {
+            0% {
+                box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+            }
+        }
+
         body {
-            background-image: url('https://th.bing.com/th/id/OIP.oRxp5mCdz0h-u4eoVSivGgHaDt?w=307&h=175&c=7&r=0&o=5&dpr=1.4&pid=1.7');
+            background-image: url("{% static 'home.webp' %}");
             background-repeat: no-repeat;
             background-position: center;
-            background-attachment: fixed; 
+            background-attachment: fixed;
             background-size: 100% 100%;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-    
-           
+            min-height: 100vh;
+            justify-content: center;
+        }
 
+        .container {
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            animation: fadeIn 1s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2980b9, #3498db);
+            animation: glowEffect 3s infinite;
         }
 
         h1 {
-            color: #3498db; /* Blue color */
-            margin-bottom: 10px;
+            color: #2980b9;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.8s ease-out;
         }
 
         p {
             font-size: 1.2em;
-            color: #333;
+            color: whitesmoke;
             text-align: center;
+            line-height: 1.6;
+            margin: 20px 0;
+            animation: fadeIn 1s ease-out 0.3s backwards;
         }
 
         .link-container {
-            margin-top: 20px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            color:white;
+            font-weight: bold;
+            margin: 0 15px;
         }
 
         a {
             text-decoration: none;
-            color: #3498db; /* Blue color */
+            color: #ffffff;
             font-weight: bold;
-            margin: 0 10px;
-            font-size: 1.5em; /* Increased font size */
-            padding: 10px 20px; /* Added padding for a button-like appearance */
-            border: 2px solid #3498db; /* Border to enhance visibility */
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+            font-size: 1.2em;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
         a:hover {
-            color: #ffffff; /* Change text color on hover */
-            background-color: #3498db; /* Background color on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+            background: linear-gradient(45deg, #2980b9, #2573a7);
         }
 
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        a:active {
+            transform: translateY(1px);
+        }
+
+        a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        a:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .link-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .separator {
+                margin: 10px 0;
+            }
+
+            a {
+                font-size: 1.1em;
+                padding: 10px 25px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Heart Disease Prediction</h1>
-        <p>Welcome to the Heart Disease Predictor!<br> Your health is important to us.</p>
+        <div class="header-container">
+            <h1 class="animated-heading">
+
+                <span class="animated-text">
+                    <span class="letter" style="animation-delay: 0.1s">H</span>
+                    <span class="letter" style="animation-delay: 0.2s">e</span>
+                    <span class="letter" style="animation-delay: 0.3s">a</span>
+                    <span class="letter" style="animation-delay: 0.4s">r</span>
+                    <span class="letter" style="animation-delay: 0.5s">t</span>
+                    <span class="letter" style="animation-delay: 0.6s">&nbsp;</span>
+                    <span class="letter" style="animation-delay: 0.7s">D</span>
+                    <span class="letter" style="animation-delay: 0.8s">i</span>
+                    <span class="letter" style="animation-delay: 0.9s">s</span>
+                    <span class="letter" style="animation-delay: 1.0s">e</span>
+                    <span class="letter" style="animation-delay: 1.1s">a</span>
+                    <span class="letter" style="animation-delay: 1.2s">s</span>
+                    <span class="letter" style="animation-delay: 1.3s">e</span>
+                </span>
+                <br>
+                <span class="animated-text">
+                    <span class="letter" style="animation-delay: 1.4s">P</span>
+                    <span class="letter" style="animation-delay: 1.5s">r</span>
+                    <span class="letter" style="animation-delay: 1.6s">e</span>
+                    <span class="letter" style="animation-delay: 1.7s">d</span>
+                    <span class="letter" style="animation-delay: 1.8s">i</span>
+                    <span class="letter" style="animation-delay: 1.9s">c</span>
+                    <span class="letter" style="animation-delay: 2.0s">t</span>
+                    <span class="letter" style="animation-delay: 2.1s">i</span>
+                    <span class="letter" style="animation-delay: 2.2s">o</span>
+                    <span class="letter" style="animation-delay: 2.3s">n</span>
+                </span>
+            </h1>
+            <div class="heading-underline"></div>
+        <p>Welcome to the Heart Disease Predictor!<br>Your health is important to us.</p>
         <div class="link-container">
-            <p>
-                <a href="{% url 'login' %}">Login</a> 
-                OR 
-                <a href="{% url 'register' %}">Register</a>
-            </p>
+            <a href="{% url 'login' %}">Login</a>
+            <span class="separator">OR</span>
+            <a href="{% url 'register' %}">Register</a>
         </div>
     </div>
+    <script>
+        // Add this script to restart animations when scrolled into view
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const letters = entry.target.querySelectorAll('.letter');
+                    letters.forEach(letter => {
+                        letter.style.animation = 'none';
+                        letter.offsetHeight; // Trigger reflow
+                        letter.style.animation = null;
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const heading = document.querySelector('.animated-heading');
+        observer.observe(heading);
+    </script>
 </body>
 </html>

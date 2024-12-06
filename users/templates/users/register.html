@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,60 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
+        body, html {
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-image: url(' https://th.bing.com/th/id/OIP.B29Fh6YxfP6rSpjW3Vjr-gHaEK?rs=1&pid=ImgDetMain');
+            background-image: url("{% static 'login_2_new.png' %}");
             background-repeat: no-repeat;
-            background-attachment: fixed; 
-            background-size: 100% 100%;
-            margin: 0;
+            background-attachment: fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.95);
             padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            overflow: hidden;
+            box-sizing: border-box; /* Ensures padding is included in width/height */
         }
 
         h2 {
-            color: #ecf0f3; /* Blue color */
-            margin-bottom: 20px;
+            color: #3498db;
+            font-size: 2em;
+            text-align: center;
+            margin: 0;
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-bottom: 2px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
-        form {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
-            width: fit-content; 
-            text-align: left;
+        .form-content {
+            overflow-y: auto;
+            padding: 10px 0;
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            font-size: 1em;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            outline: none;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            margin-bottom: 20px;
+            box-sizing: border-box; /* Include padding and border in element's total width */
+        }
+
+        input:hover, input:focus {
+            border-bottom: 2px solid #3498db;
+            background-color: #f0f8ff;
         }
 
         button {
-            background-color: #3498db; /* Blue background */
-            color: white; /* White text */
+            background-color: #3498db;
+            color: white;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 1em;
             cursor: pointer;
-            
+            width: 100%;
+            transition: background-color 0.3s, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #1d6fa5;
+            transform: translateY(-2px);
         }
 
         p {
             font-size: 1em;
-            color: #333;
-            margin-top: 20px;
-           
+            color: #000000;
+            margin-top: 15px;
+            text-align:left;
         }
-    
+
+        p a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        p a:hover {
+            color: #1d6fa5;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
-    <h2>Register</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
-    </form>
-    <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    <div class="form-container">
+        <h2>Register</h2>
+        <div class="form-content">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Register</button>
+                <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

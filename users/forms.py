@@ -70,7 +70,8 @@ class Prediction_form(forms.Form):
             ('Diabetes', 'Diabetes'),
             ('Hypertension', 'Hypertension'),
             ('High Cholesterol', 'High Cholesterol'),
-            ('Asthma', 'Asthma')
+            ('Asthma', 'Asthma'),
+            ('Thyroid', 'Thyroid')
             
         ],
         widget=forms.Select(attrs={'class': 'form-control'}),

@@ -1,5 +1,4 @@
-
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +9,8 @@
         /* General Styles */
         body {
             font-family: 'Arial', sans-serif;
+            background-image: url("{% static 'prediction_form_backround.png' %}");
+            background-size: cover;      
             background-color: #f0f4f8;
             margin: 0;
             padding: 0;
@@ -89,6 +90,17 @@
         <p class="prediction">
           <p><strong>Prediction:</strong> {{ prediction }}</p>
         </p>
+        <h5 class="mt-4">Patient Data:</h5>
+                <table class="table">
+                    <tbody>
+                        {% for key, value in patient_data.items %}
+                        <tr> 
+                                <th>{{ key }}</th>
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
 
         <a href="{% url 'prediction_form' %}">Make Another Prediction</a>
     </div>
