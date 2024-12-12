@@ -3,7 +3,6 @@
 This project aims to develop Health Management system by using a machine learning model for predicting the likelihood of heart disease in patients. This can predict 5 different types of disease :- 'Arrhythmia','Coronary Artery Disease','Heart Disease','Hypertension', 'Stroke'.
 
 
-
 ## Model
 
 We have implemented a classification model using a combination of feature engineering and bases on S.V.C machine learning algorithm. The model is trained on the dataset to learn patterns and make predictions on new, unseen data.
@@ -49,6 +48,7 @@ We have implemented a classification model using a combination of feature engine
 ## Results
 
 The performance of the heart disease predictor model is evaluated using various metrics such as accuracy, precision, recall, and F1 score. 
+
 Classification Report on Test Data:
               precision    recall  f1-score   support
 
