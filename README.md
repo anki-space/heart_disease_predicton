@@ -19,7 +19,7 @@ We have implemented a classification model using a combination of feature engine
 
     ```bash
     python -m venv venv
-    source venv/bin/activate
+    venv\Scripts\activate
     ```
 
 3. Install the required packages:
