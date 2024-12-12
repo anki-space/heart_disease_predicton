@@ -50,6 +50,7 @@ We have implemented a classification model using a combination of feature engine
 The performance of the heart disease predictor model is evaluated using various metrics such as accuracy, precision, recall, and F1 score. 
 
 Classification Report on Test Data:
+
               precision    recall  f1-score   support
 
            0       1.00      0.88      0.94        50
