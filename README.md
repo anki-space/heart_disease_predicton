@@ -19,7 +19,7 @@ We have implemented a classification model using a combination of feature engine
 
     ```bash
     python -m venv venv
-    source venv/bin/activate
+    venv\Scripts\activate
     ```
 
 3. Install the required packages:
@@ -50,6 +50,7 @@ We have implemented a classification model using a combination of feature engine
 The performance of the heart disease predictor model is evaluated using various metrics such as accuracy, precision, recall, and F1 score. 
 
 Classification Report on Test Data:
+
               precision    recall  f1-score   support
 
            0       1.00      0.88      0.94        50
@@ -59,7 +60,7 @@ Classification Report on Test Data:
            4       1.00      0.83      0.91        36
 
     accuracy                           0.93       242
-   
+
 
 The results indicate the effectiveness of the model in predicting heart disease.
 
