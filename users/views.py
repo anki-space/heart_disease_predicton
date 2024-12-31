@@ -48,24 +48,20 @@ def login_view(request):  #dont name "login" bcoz django already have build-in l
 @login_required  # Ensure the user is logged in before accessing this view
 def successfully_logged_in(request):
     return render(request,'users/successfully_logged_in.html')
-    # return redirect('successfully_logged_in')  # Redirect successful login
-    # return redirect('prediction_form')
 
 @login_required
 def signout_profile(request):
     logout(request)
     return redirect ('home')
+
 @login_required
 def result(request):
     return render(request, 'users/result.html')
+
 @login_required
 def prediction(request):
     return redirect('prediction_form')
-@login_required
-def view_history(request):
-    user = request.user
-    profile_results = Profile_result.objects.filter(user=user)
-    return render(request, 'users/view_history.html', {'profile_results': profile_results})
+
 
 
 
@@ -125,12 +121,17 @@ def prediction_form(request):
             input_df = input_df[features_after_onehotencoding]  
 
 
-            prediction = model.predict(input_df)
-            prediction = label_encoder.inverse_transform(prediction)
+            prediction1 = model.predict(input_df)
+            prediction = label_encoder.inverse_transform(prediction1)
+            prediction = prediction[0]
 
-            if prediction[0] is not None:
-                profile_save = Profile_result(
+            
+
+            if prediction is not None and request.user.is_authenticated:
+                
+                profile_save = Profile_result.objects.create(
                     user=request.user,
+                    patient_name=form.cleaned_data['patient_name'],
                     height=form.cleaned_data['height'],
                     weight=form.cleaned_data['weight'], 
                     temperature=form.cleaned_data['temperature'],
@@ -144,17 +145,27 @@ def prediction_form(request):
                     family_history=form.cleaned_data['family_history'],
                     smoking_status=form.cleaned_data['smoking_status'],
                     laboratory_results=form.cleaned_data['laboratory_results'],
-                    prediction=prediction[0]
+                    prediction=prediction
                 )
-            
 
-                profile_save.save()
             return render(request, 'users/result.html', {
                 'prediction': prediction, 
+                'patient_id': profile_save.patient_id,
+                'patient_name': profile_save.patient_name,
                 'patient_data': patient_data
+
             })
         
         
     else:
         form = Prediction_form()
     return render(request, 'users/prediction_form.html', {'form': form})
+
+@login_required
+def view_history(request): 
+    profile_results = Profile_result.objects.filter(user=request.user).order_by('-created_at')
+
+    return render(request, 'users/view_history.html', {
+        'profile_results': profile_results,
+        'message': 'No previous results found.' if not profile_results.exists() else ''
+    })

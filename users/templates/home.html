@@ -41,23 +41,20 @@
         }
 
         @keyframes glowEffect {
-            0% {
+            0%, 100% {
                 box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
             }
             50% {
                 box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
             }
-            100% {
-                box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
-            }
         }
 
         body {
-            background-image: url("{% static 'home.webp' %}");
+            background-image: url("{% static 'home1.jpeg' %}");
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
-            background-size: 100% 100%;
+            background-size: cover;
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
@@ -95,7 +92,7 @@
         }
 
         h1 {
-            color: #2980b9;
+            color: #000985;
             margin-bottom: 20px;
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -122,7 +119,7 @@
         .separator {
             display: flex;
             align-items: center;
-            color:white;
+            color: white;
             font-weight: bold;
             margin: 0 15px;
         }
@@ -200,7 +197,6 @@
     <div class="container">
         <div class="header-container">
             <h1 class="animated-heading">
-
                 <span class="animated-text">
                     <span class="letter" style="animation-delay: 0.1s">H</span>
                     <span class="letter" style="animation-delay: 0.2s">e</span>
@@ -230,26 +226,23 @@
                     <span class="letter" style="animation-delay: 2.3s">n</span>
                 </span>
             </h1>
-            <div class="heading-underline"></div>
-        <p>Welcome to the Heart Disease Predictor!<br>Your health is important to us.</p>
-        <div class="link-container">
-            <a href="{% url 'login' %}">Login</a>
-            <span class="separator">OR</span>
-            <a href="{% url 'register' %}">Register</a>
+            <p>Welcome to the Heart Disease Predictor!<br>Your health is important to us.</p>
+            <div class="link-container">
+                <a href="{% url 'login' %}">Login</a>
+                <span class="separator">OR</span>
+                <a href="{% url 'register' %}">Register</a>
+            </div>
         </div>
     </div>
-    <script>
-        // Add this script to restart animations when scrolled into view
-        const observerOptions = {
-            threshold: 0.5
-        };
 
+    <script>
+        // Improved Intersection Observer for animation reset
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const letters = entry.target.querySelectorAll('.letter');
                     letters.forEach(letter => {
-                        letter.style.animation = 'none';
+                        letter.style.animation ='none';
                         letter.offsetHeight; // Trigger reflow
                         letter.style.animation = null;
                     });

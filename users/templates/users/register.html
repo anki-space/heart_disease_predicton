@@ -15,7 +15,6 @@
         body {
             font-family: Arial, sans-serif;
             background-image: url("{% static 'login_2_new.png' %}");
-            background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             display: flex;
@@ -150,9 +149,9 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Register</button>
-                <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
             </form>
         </div>
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
     </div>
 </body>
 </html>

@@ -4,69 +4,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Heart Disease Prediction</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-image: url("{% static 'Sucessful_logged_in.jpg' %}");
             background-repeat: no-repeat;
-            background-attachment: fixed; 
-            background-size: 100% 100%;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2C3E50;
+            color: white;
+            padding: 1rem 2rem;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        h2 {
-            color: #3498db; /* Blue color */
-            margin-bottom: 10px;
+        .logo {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
         }
 
-        p {
-            font-size: 1.2em;
-            color: #333;
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background-color: #1ABC9C;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #16A085;
+        }
+
+        .hero-section {
             text-align: center;
-            margin: 5px 0;
+            padding: 120px 20px;
+            background: rgba(0, 0, 0, 0.4);
         }
 
-        .container {
-            background-color: #ffffff;
+        .hero-title {
+            font-size: 3.5rem;
+            margin: 0;
+            color: #fff;
+        }
+
+        .hero-description {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #fff;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section a {
+            padding: 12px 30px;
+            background-color: #E74C3C;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .hero-section a:hover {
+            background-color: #C0392B;
+        }
+
+        .features, .latest-news {
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .feature_container {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 20px;
+        }
+
+        .feature, .news-item {
+            background-color: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
 
-        .link-container {
-            margin-top: 20px;
+        .feature:hover, .news-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
-        a {
+        .feature img, .news-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .feature h3, .news-item h4 {
+            font-size: 1.8rem;
+            color: #34495E;
+        }
+
+        .feature p, .news-item p {
+            color: #7F8C8D;
+        }
+
+        footer {
+            background-color: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        footer a {
+            color: white;
             text-decoration: none;
-            color: #3498db; /* Blue color */
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 2px solid #3498db; /* Border for visibility */
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
-        }
-
-        a:hover {
-            color: #ffffff; /* Change text color on hover */
-            background-color: #3498db; /* Background color on hover */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Welcome!</h2>
-        <p>You have successfully logged in.</p>
-        <div class="link-container">
-            <a href="{% url 'prediction' %}">Predict Diesease</a>
-            <a href="{% url 'signout_profile' %}">SIGNOUT</a>
-            <a href="{% url 'view_history' %}">View History</a>
+
+    <header>
+        <div class="logo">Welcome {{user}}</div>
+        <nav>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#news">Latest News</a></li>
+                <li><a href="{% url 'signout_profile' %}">SIGNOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <h1 class="hero-title">Predict Heart Diseases with Accuracy</h1>
+        <p class="hero-description">Leverage advanced machine learning models to predict heart diseases early and save lives.</p>
+        <a href="{% url 'prediction' %}">Start Prediction</a>
+        <br><br>
+        <a href="{% url 'view_history' %}">View History</a>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Features</h2>
+        <div class="feature_container">
+            <div class="feature">
+                <h3>High Accuracy</h3>
+                <p>Our model is designed to provide highly accurate predictions.</p>
+            </div>
+            <div class="feature">
+                <h3>Data Insights</h3>
+                <p>Analyze patient data to understand risk factors and trends.</p>
+            </div>
+            <div class="feature">
+                <h3>Early Detection</h3>
+                <p>Our goal is to find the possibility of heart disease as early as possible.</p>
+            </div>
         </div>
+    </section>
+
+    <section id="news" class="latest-news">
+        <h2>Latest Health Tips & News</h2>
+        <div class="feature_container">
+            <div class="news-item">
+                <h4><a href="https://www.healthline.com/health/healthy-heart-tips">How to Maintain a Healthy Heart</a></h4>
+                <p>Tips and tricks to keep your heart healthy and strong.</p>
+            </div>
+            <div class="news-item">
+                <h4><a href="https://www.webmd.com/heart-disease/heart-disease-types-causes-symptoms">Understanding Heart Diseases</a></h4>
+                <p>Learn more about heart diseases and how to prevent them.</p>
+            </div>
+            <div class="news-item">
+                <h4><a href="https://www.theaustralian.com.au/news/this-littleknown-diet-can-reduce-blood-pressure-and-risk-of-heart-disease/news-story/ce9dfb7975dc653002b6107bf2de46b7">Latest Medical Technologies</a></h4>
+                <p>Discover the newest advancements in heart disease treatment.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Heart Disease Predictor. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>

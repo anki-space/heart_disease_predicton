@@ -10,6 +10,7 @@
         body {
             font-family: 'Arial', sans-serif;
             background-image: url("{% static 'prediction_form_backround.png' %}");
+            background-attachment: fixed;
             background-size: cover;      
             background-color: #f0f4f8;
             margin: 0;
@@ -21,6 +22,9 @@
         }
 
         .container {
+            display: block;
+            position: sticky;
+            margin-top: 20%;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -31,15 +35,28 @@
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 2.3em;
             color: #333;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+        h4{
+            font-size: 1.3em;
+            color: #333;
+            margin-top: 13px;
+            margin-bottom: 3px;
+        }
+        strong {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
         }
 
+
         p {
-            font-size: 1.2em;
+            font-size: 1.8em;
             color: #555;
-            margin: 20px 0;
+            margin: 2px 0;
         }
 
         strong {
@@ -53,17 +70,7 @@
             margin-top: 20px;
         }
 
-        .prediction-positive {
-            color: #e74c3c; /* Red for positive result */
-        }
-
-        .prediction-negative {
-            color: #27ae60; /* Green for negative result */
-        }
-
-        .prediction-neutral {
-            color: #95a5a6; /* Gray for neutral result */
-        }
+       
 
         /* Button Styling */
         a {
@@ -81,28 +88,72 @@
         a:hover {
             background-color: #2980b9; /* Darker blue on hover */
         }
+        .form-header {
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            z-index: 1000;
+            border-top: 0px;
+            border-bottom: 1px solid #007bff;
+        }
+
+        .table th, .table td {
+            color: #000000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    
     </style>
 </head>
 <body>
 
     <div class="container">
+    <div class="form-header">
         <h1>Prediction Result</h1>
         <p class="prediction">
-          <p><strong>Prediction:</strong> {{ prediction }}</p>
+            Prediction: <strong>{{ prediction }}</strong>
         </p>
-        <h5 class="mt-4">Patient Data:</h5>
-                <table class="table">
-                    <tbody>
-                        {% for key, value in patient_data.items %}
-                        <tr> 
-                                <th>{{ key }}</th>
-                                <td>{{ value }}</td>
-                            {% endfor %}
-                        </tr>
-                    </tbody>
-                </table>
+        <h4 >Patient Data:</h4>
+    </div>
+        <div class="patient_data">
+        
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Patient Name</th>
+                    <td>{{ patient_name }}</td>
+                </tr>
 
-        <a href="{% url 'prediction_form' %}">Make Another Prediction</a>
+                <tr>
+                    <th>Patient Id</th>
+                    <td>{{ patient_id }}</td>
+                </tr>
+
+                {% for key, value in patient_data.items %}
+                    <tr>
+                        <th>{{ key }}</th>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        
+        <a  href="{% url 'prediction_form' %}">Make Another Prediction</a>
     </div>
 
 </body>

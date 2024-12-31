@@ -11,6 +11,8 @@ class UserProfile(models.Model):
 
 class Profile_result(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    patient_id = models.CharField(max_length=20, blank=True)
+    patient_name = models.CharField(max_length=100, blank=True)
     height = models.FloatField()
     weight = models.FloatField()
     temperature = models.FloatField()
@@ -26,4 +28,14 @@ class Profile_result(models.Model):
     laboratory_results = models.CharField(max_length=100,default='None')
     prediction = models.CharField(max_length=100,default='None')
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
+ 
+    def save(self, *args, **kwargs):
+        if not self.patient_id:
+            last_id = Profile_result.objects.all().order_by('id').last()     
+            if last_id is None or "Pid" not in str(last_id.patient_id) :
+                new_id = 1        
+            else:
+                new_id = int(last_id.patient_id.split('_')[-1]) + 1
+            self.patient_id = f"Pid_{new_id:04d}"
+        super().save(*args, **kwargs)

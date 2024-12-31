@@ -1,18 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Prediction History</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction History</title>
+    {% load static %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{% static 'prediction_form_backround.png' %}");
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+    
+        h1 {
+            position: fixed; 
+            top: 20px; 
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for exact centering */
+            background-color: rgba(31, 117, 245, 0.9); /* Add a background color */
+            color: #fff;
+            opacity: 100%;
+            font-size: 2.5rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adding some shadow for better visibility */
+            z-index: 1000; /* Ensure it's on top */
+            width: 80%; /* Set width to 80% of the container */
+            max-width: 800px; /* Optional: Set a max width */
+            text-align: center; /* Center the heading text */
+        }
+
+        .container {
+            margin-top: 120px;
+            padding: 20px;
+            background: rgba(31, 117, 245, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            border-radius: 10px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: #fff;
+        }
+
+        th {
+            background-color: #50a7f3;
+            color: black;
+        }
+
+        .btn-custom {
+            background-color: #a6ad16;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
+
 <body>
-     <h1>Prediction History</h1>
-     <p>Here are your previous predictions:</p>
-     <pre>
-     {% for prediction in predictions %}
-         {{  profile_results  }}
-     {% endfor %}
-     </pre>
-     
+    <h1>Prediction History</h1> 
+
+    <div class="container">
+        {% if message %}
+            <p>{{ message }}</p>
+        {% else %}
+            <table>
+                <thead>
+                    <tr class="Heading">
+                        <th>Patient ID</th>
+                        <th>Patient Name</th>
+                        <th>Prediction</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in profile_results %}
+                        <tr>
+                            <td>{{ result.patient_id }}</td>
+                            <td>{{ result.patient_name }}</td>
+                            <td>{{ result.prediction }}</td>
+                            <td>{{ result.created_at }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
 </body>
 </html>

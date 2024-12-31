@@ -12,13 +12,19 @@ class RegisterForm(UserCreationForm):
         fields = ['username', 'email', 'phone_number', 'dob', 'Hospital_name', 'password1', 'password2']
 
 class Prediction_form(forms.Form):
+    patient_name = forms.CharField(
+        label='Patient Name',
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),    
+        required=True   
+    )
     height = forms.FloatField(
         label='Height (cm)',
         widget=forms.NumberInput(attrs={'class': 'form-control'}),
         required=True
     )
     weight = forms.FloatField(
-        label='weight (kg)',
+        label='Weight (kg)',
         widget=forms.NumberInput(attrs={'class': 'form-control'}),
         required=True
     )
@@ -28,17 +34,17 @@ class Prediction_form(forms.Form):
         required=True
     )
     heart_rate = forms.FloatField(
-        label='heart_rate (bpm)',
+        label='Heart Rate (bpm)',
         widget=forms.NumberInput(attrs={'class': 'form-control'}),
         required=True
     )
     cholesterol = forms.FloatField(
-        label='cholesterol (mg/dl)',
+        label='Cholesterol (mg/dl)',
         widget=forms.NumberInput(attrs={'class': 'form-control'}),
         required=True
     )
     blood_sugar = forms.FloatField(
-        label='blood_sugar (mg/dl)',
+        label='Blood Sugar (mg/dl)',
         widget=forms.NumberInput(attrs={'class': 'form-control'}),
         required=True
     )

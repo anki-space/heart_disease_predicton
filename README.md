@@ -59,8 +59,7 @@ Classification Report on Test Data:
            4       1.00      0.83      0.91        36
 
     accuracy                           0.93       242
-   macro avg       0.95      0.93      0.93       242
-weighted avg       0.94      0.93      0.93       242
+   
 
 The results indicate the effectiveness of the model in predicting heart disease.
 
